@@ -16,6 +16,10 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
 
 export default {
   data() {
+    return {
+      email: '',
+      password: '',
+    }
     
   },
 
@@ -62,7 +66,7 @@ export default {
     logClicked: async function (e) {
       e.preventDefault()
 
-      console.log('Clicked')
+      console.log('Signin Clicked');
 
       const auth = getAuth();
       // Sign in using a redirect.
@@ -71,39 +75,9 @@ export default {
       provider.addScope('profile');
       provider.addScope('email');
 
-      signInWithRedirect(auth, provider);
+      await signInWithRedirect(auth, provider);
       // This will trigger a full page redirect away from your app
-    },
-    
-    // register: async function (e) {
-    //   e.preventDefault()
-
-    //   const auth = getAuth();
-
-    //   try {
-    //     const userCredential = await createUserWithEmailAndPassword(auth, this.email, this.password);
-    //     const user = userCredential.user
-    //     console.log('User registered: ', user);
-    //   } catch (error) {
-    //     console.log('Error while registering user: ', error);
-    //   }
-    // },
-
-    // login: async function (e) {
-    //   e.preventDefault()
-
-    //   const auth = getAuth();
-
-    //   try {
-    //     const userCredential = await signInWithEmailAndPassword(auth, this.email, this.password);
-    //     const user = userCredential.user
-    //     console.log('User signed in: ', user);
-    //   } catch (error) {
-    //     var errorMessage = error.message;
-    //     console.log(errorMessage);
-    //     console.log('Error while signing user- ', error);
-    //   }
-    // }
+    }
   }
 }
 </script>
